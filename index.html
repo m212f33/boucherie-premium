@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#990f1b"><title>Boucherie Premium</title>
+<link rel="manifest" href="./manifest.json">
 <style>
 :root{--red:#a30f1c;--gold:#d7a72d;--bg:#090a0c;--card:#17191d;--line:#303238;--txt:#f7f5f0;--muted:#a9abb3}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.45 system-ui,Arial}.wrap{max-width:720px;margin:auto;padding:0 16px 30px}header{margin:0 -16px;padding:16px;background:linear-gradient(130deg,var(--red),#720b14);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}h1{font-size:19px;margin:0}button{border:0;border-radius:9px;padding:10px 13px;background:var(--red);color:white;font:inherit;font-weight:700;cursor:pointer}.secondary{background:#292b30;border:1px solid #444}.gold{background:var(--gold);color:#19140a}.danger{background:#7c1822}.hidden{display:none!important}.panel,.card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px;margin:14px 0}#invForm{scroll-margin-top:90px}.welcome{text-align:center;padding:22px 0}.welcome span{font-size:44px;color:var(--gold)}input,select,textarea{display:block;width:100%;padding:11px;border-radius:8px;border:1px solid #3c3f46;background:#101114;color:white;font:inherit}label{display:block;font-size:13px;color:#ccc;margin:10px 0 5px}.full{width:100%;margin-top:8px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.tabs{display:flex;gap:5px;margin:12px 0}.tabs button{flex:1;background:#292b30}.tabs button.active{background:var(--red)}.muted,small{color:var(--muted)}.item{padding:12px;background:#111317;border:1px solid #303238;border-radius:10px;margin:8px 0;overflow-wrap:anywhere}.item strong{display:block}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.actions button{font-size:12px;padding:7px}.notice{padding:10px;background:#3a2b12;border:1px solid #8a6827;border-radius:9px}.catgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.cat{padding:12px;background:#202329;border:1px solid #363940;border-radius:9px}.iconpicker{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}.iconchoice{background:#202329;font-size:22px;padding:7px 0}.iconchoice.selected{border:2px solid var(--gold)}.orderbox{padding:9px;border-radius:8px;margin-top:7px}.customer{background:#172b43}.pickup{background:#18352b}.products{background:#29251a}.notes{background:#202b3b}.status{display:inline-block;padding:4px 7px;border-radius:15px;background:#35383f;font-size:11px}.good{background:#14563d}.warn{background:#7a4b0c}.user-details.admin-user{border:1px solid var(--gold);background:linear-gradient(135deg,#282217,#17191d 72%);box-shadow:inset 4px 0 0 var(--gold)}.user-details.admin-user>summary strong{color:#f2cf69}.user-details.admin-user>summary small{color:#f7e5ae}.user-details.admin-user>summary:before{content:"ADMINISTRATEUR";display:inline-block;margin:0 0 7px;padding:3px 8px;border:1px solid var(--gold);border-radius:12px;color:#f2cf69;font-size:10px;font-weight:800;letter-spacing:.6px}.user-details.backup-admin-user{border-style:double;border-width:3px}.user-details>summary{cursor:pointer;list-style:none;position:relative;padding-right:24px}.user-details>summary::-webkit-details-marker{display:none}.user-details>summary:after{content:"＋";position:absolute;right:2px;top:0;color:var(--gold);font-size:20px;font-weight:700}.user-details[open]>summary:after{content:"−"}.user-details>summary strong{display:block}.user-details>summary small{display:block;margin-top:3px}.user-hint{display:block;font-size:12px;margin-top:7px}.user-details-body{border-top:1px solid var(--line);margin-top:12px;padding-top:4px}.permission-grid{display:grid;grid-template-columns:1fr;gap:7px;margin:10px 0}.permission-row{display:flex;gap:10px;align-items:center;background:#111317;border:1px solid #303238;border-radius:8px;padding:9px}.permission-row input{width:auto;display:inline-block;margin:0}.permission-row label{margin:0;flex:1;color:#eee;font-size:13px}.scanner-frame{position:relative}#scanVideo{object-fit:cover}#scanStatus{margin-top:0;color:var(--gold)}@media(max-width:380px){.catgrid{grid-template-columns:1fr}}
 
@@ -774,6 +775,16 @@ function deleteChatAnnouncement(id){if(!isAdmin())return;const a=db.chatAnnounce
     initOrderModalLock();
   }
 })();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(() => console.log('Service worker enregistré'))
+      .catch(error => console.error('Erreur service worker :', error));
+  });
+}
 </script>
 
 </body></html>
