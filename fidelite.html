@@ -1,28 +1,280 @@
 <!doctype html>
 <html lang="fr">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111214">
-<title>Boucherie Premium — Fidélité</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#111214">
+    <title>Boucherie Premium — Fidélité</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
 :root{--bg:#101113;--panel:#1a1b1f;--panel2:#222329;--line:#3b3527;--gold:#d7b45b;--gold2:#f5dfa0;--text:#f5f4f0;--muted:#b8b8bd;--red:#a92b32;--green:#286746;--radius:17px}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#28231a 0,#101113 48%);color:var(--text);font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid #65532c;border-radius:12px;padding:11px 14px;color:#191714;background:linear-gradient(135deg,#f3d98c,#c69a3c);font-weight:750}button.secondary{background:#26272c;color:var(--text);border-color:#4b4c52}button.danger{background:#632127;color:#fff;border-color:#9c3941}button:disabled{opacity:.45;cursor:not-allowed}.hidden{display:none!important}.wrap{max-width:1100px;margin:auto;padding:18px 15px 55px}.brand{text-align:center;padding:12px 8px 18px}.brand .mark{width:58px;height:58px;border-radius:18px;margin:auto auto 8px;display:grid;place-items:center;border:1px solid var(--gold);color:var(--gold2);font-size:30px;background:#1b1914;box-shadow:0 0 28px #d7b45b15}.brand h1{font-size:clamp(24px,4vw,34px);margin:0;letter-spacing:.09em}.brand p{color:var(--gold);margin:4px 0 0;letter-spacing:.2em;font-size:12px;font-weight:800}.topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}.topline h2{margin:0;font-size:22px}.pill{display:inline-flex;border:1px solid #5a4a2a;border-radius:99px;padding:4px 10px;color:var(--gold2);font-size:12px}.card{background:linear-gradient(145deg,#202125,#17181b);border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin:12px 0;box-shadow:0 10px 28px #0003}.card h3{margin:0 0 12px;color:var(--gold2)}.muted{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.stats{font-size:28px;color:var(--gold2);font-weight:800}.tabs{display:flex;gap:7px;overflow:auto;padding:5px 0 12px}.tabs button{white-space:nowrap;background:#222329;color:#ddd;border-color:#484951}.tabs button.active{background:linear-gradient(135deg,#f3d98c,#c69a3c);color:#171614}.field{margin:10px 0}.field label{display:block;font-size:13px;color:var(--gold2);margin-bottom:5px;font-weight:650}.field input,.field select,.field textarea{width:100%;background:#101114;border:1px solid #47484e;border-radius:10px;color:#fff;padding:11px 12px;outline:none}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold)}.field textarea{min-height:100px;resize:vertical}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.row button{flex:0 0 auto}.right{text-align:right}.notice{border:1px solid #65532c;background:#282316;padding:12px;border-radius:12px;color:#f2e1b0}.error{border-color:#8d3038;background:#35191d;color:#ffd6d6}.success{border-color:#2c7850;background:#152a20;color:#c6f3d7}.list{display:grid;gap:9px}.item{padding:12px;border:1px solid #3b3c42;border-radius:13px;background:#1a1b20}.item strong{display:block}.item small{color:var(--muted)}.item-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.item-actions button{font-size:13px;padding:8px 10px}.customer-head{text-align:center;padding:22px 12px}.balance{font-size:clamp(44px,9vw,72px);font-weight:900;color:var(--gold2);line-height:1.05;margin:7px 0}.tier{display:inline-block;padding:5px 14px;border-radius:99px;border:1px solid var(--gold);color:var(--gold2);font-weight:800}.progress{height:10px;background:#393a40;border-radius:99px;overflow:hidden;margin:12px 0}.progress>span{display:block;height:100%;background:linear-gradient(90deg,#b88b2e,#f7e3a0);width:0}.reward{display:grid;grid-template-columns:86px minmax(0,1fr);gap:12px;align-items:center}.reward img{width:86px;height:86px;object-fit:cover;border-radius:12px;background:#111}.reward .placeholder{width:86px;height:86px;border-radius:12px;display:grid;place-items:center;background:#2b2923;font-size:30px}.checkline{display:flex;align-items:flex-start;gap:9px;color:#ddd;font-size:14px}.checkline input{margin-top:5px}.status{font-size:12px;padding:3px 8px;border-radius:99px;background:#333;color:#ddd;display:inline-block}.status.ok{background:#17482e;color:#bff2d0}.status.warn{background:#5a4316;color:#ffe1a0}.status.bad{background:#5b2026;color:#ffd1d5}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid #38393e;vertical-align:top}th{color:var(--gold2)}.empty{text-align:center;padding:25px;color:var(--muted)}.foot{text-align:center;color:#777;font-size:11px;padding:25px 0}.modal-back{position:fixed;inset:0;background:#000b;display:grid;place-items:center;padding:14px;z-index:20}.modal{width:min(520px,100%);max-height:90vh;overflow:auto;background:#1a1b1f;border:1px solid var(--gold);border-radius:18px;padding:18px}.modal h3{margin-top:0;color:var(--gold2)}@media(min-width:760px){.wrap{padding:25px 22px 60px}.card{padding:20px}.customer-head{padding:28px}}
-</style></head><body><div class="wrap">
-<header class="brand"><div class="mark">✦</div><h1>BOUCHERIE PREMIUM</h1><p>PROGRAMME DE FIDÉLITÉ</p></header>
-<div id="toast" class="notice hidden" role="status"></div>
-<section id="adminGate" class="card hidden"><h3>Accès administrateur</h3><p>Pour gérer la fidélité, connecte-toi d’abord à Boucherie Premium avec le compte administrateur, puis ouvre cette rubrique depuis l’application principale.</p><button onclick="backToApp()">Retour à Boucherie Premium</button></section>
-<section id="adminApp" class="hidden">
-<div class="topline"><h2>Administration fidélité</h2><div class="row" style="flex:0 0 auto"><button class="secondary" onclick="backToApp()">← Application</button><button class="secondary" onclick="openTablet()">Écran tablette ↗</button></div></div>
-<div class="tabs" id="adminTabs"><button data-tab="overview" class="active" onclick="showAdminTab('overview')">Vue d’ensemble</button><button data-tab="customers" onclick="showAdminTab('customers')">Clients</button><button data-tab="rewards" onclick="showAdminTab('rewards')">Récompenses</button><button data-tab="settings" onclick="showAdminTab('settings')">Réglages</button><button data-tab="sms" onclick="showAdminTab('sms')">SMS clients</button><button data-tab="history" onclick="showAdminTab('history')">Historique</button></div>
-<section id="tab-overview"><div class="grid"><div class="card"><small class="muted">Clients fidélité</small><div id="statCustomers" class="stats">—</div></div><div class="card"><small class="muted">Récompenses actives</small><div id="statRewards" class="stats">—</div></div><div class="card"><small class="muted">Points en circulation</small><div id="statPoints" class="stats">—</div></div><div class="card"><small class="muted">Campagnes SMS</small><div id="statCampaigns" class="stats">—</div></div></div><div class="card"><h3>Règles actuelles</h3><div id="overviewRules" class="muted">Chargement…</div></div><div class="notice">Les points ne périment pas. Les opérations de points et les validations de récompenses sont traitées côté serveur.</div></section>
-<section id="tab-customers" class="hidden"><div class="card"><h3>Rechercher un client</h3><div class="row"><div class="field"><label>Nom ou téléphone</label><input id="customerSearch" placeholder="Prénom ou +33…" oninput="debouncedCustomers()"></div><button onclick="loadCustomers()">Rechercher</button></div><div class="muted">Sélectionne un client pour consulter son solde et gérer son compte.</div></div><div id="customerList" class="list"></div><div id="customerDetail"></div></section>
-<section id="tab-rewards" class="hidden"><div class="card"><div class="row"><h3>Catalogue des récompenses</h3><button onclick="editReward()">＋ Ajouter</button></div><p class="muted">Produits offerts ou réductions. Une photo est obligatoire pour chaque récompense active destinée aux clients.</p><div id="rewardList" class="list"></div></div><div id="rewardEditor" class="card hidden"></div></section>
-<section id="tab-settings" class="hidden"><div class="card"><h3>Règles du programme</h3><div class="grid"><div class="field"><label>Points attribués par jour et par client</label><input id="cfgPoints" type="number" min="1" max="100"></div><div class="field"><label>Bronze — à partir de</label><input id="cfgBronze" type="number" min="0"></div><div class="field"><label>Argent — à partir de</label><input id="cfgSilver" type="number" min="0"></div><div class="field"><label>Or — à partir de</label><input id="cfgGold" type="number" min="1"></div></div></div><div class="card"><h3>Code PIN partagé</h3><label class="checkline"><input id="cfgPinEnabled" type="checkbox"> <span>Activer le PIN global</span></label><label class="checkline"><input id="cfgPinLookup" type="checkbox"> <span>Demander le PIN lors de l’accès au compte et de l’attribution quotidienne</span></label><label class="checkline"><input id="cfgPinRedeem" type="checkbox"> <span>Demander le PIN lors de la confirmation d’une récompense</span></label><div class="field"><label>Nouveau PIN à 4 chiffres (laisser vide pour conserver le PIN actuel)</label><input id="cfgNewPin" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="••••"></div><p id="pinStatus" class="muted"></p></div><div class="card"><h3>Connexion de la tablette fidélité</h3><div class="grid"><div class="field"><label>Identifiant partagé</label><input id="tabletUsername" autocomplete="off"></div><div class="field"><label>Nouveau mot de passe (10 caractères minimum)</label><input id="tabletPassword" type="password" autocomplete="new-password"></div></div><p class="muted">La session de la tablette reste active après redémarrage. Modifier les identifiants ou révoquer l’accès invalide immédiatement la session précédente.</p><div class="row"><button onclick="saveTablet()">Enregistrer les identifiants</button><button class="danger" onclick="revokeTablet()">Révoquer la tablette</button></div><p id="tabletStatus" class="muted"></p></div><div class="card"><h3>Communications clients</h3><label class="checkline"><input id="cfgSmsEnabled" type="checkbox"> <span>Autoriser les campagnes SMS depuis FIDÉLITÉ</span></label><p class="muted">Les SMS ne seront envoyés qu’aux clients ayant un consentement enregistré et non retiré. L’offre gratuite TextBee est limitée et le forfait mobile reste soumis aux conditions de l’opérateur.</p></div><button class="full" onclick="saveSettings()">Enregistrer tous les réglages fidélité</button></section>
-<section id="tab-sms" class="hidden"><div class="card"><h3>Passerelle SMS gratuite — téléphone Android</h3><p class="muted">Le téléphone Android doit être connecté à TextBee, allumé et en ligne. La clé API est conservée côté serveur et n’est pas réaffichée dans le navigateur. Les destinataires verront le numéro de la SIM, pas le nom BOUCHERIE PREMIUM. Pour détecter les réponses STOP, active aussi « Receive SMS » et l’autorisation SMS dans l’application TextBee sur Android.</p><div class="field"><label>Clé API TextBee</label><input id="smsApiKey" type="password" autocomplete="new-password" placeholder="Coller la clé API TextBee"></div><div class="row"><div class="field"><label>Téléphone associé (facultatif)</label><select id="smsDevice"><option value="">Téléphone par défaut TextBee</option></select></div><button class="secondary" onclick="loadSmsDevices()">Charger les téléphones</button></div><button onclick="saveSmsConfig()">Enregistrer la configuration SMS</button><p id="smsConfigStatus" class="muted"></p></div><div class="card"><h3>Préparer une campagne</h3><div class="field"><label>Type de message</label><select id="campaignType"><option value="promotion">Promotion commerciale</option><option value="information">Information pratique</option></select></div><div class="field"><label>Message SMS</label><textarea id="campaignMessage" maxlength="1000" placeholder="Rédige ton message…" oninput="updateCampaignPreview()"></textarea><div class="muted"><span id="campaignChars">0</span>/1000 caractères · plusieurs segments peuvent être nécessaires si le message est long.</div></div><div class="row"><button class="secondary" onclick="loadConsentRecipients()">Actualiser les clients consentants</button><button class="secondary" onclick="syncOptOuts()">Synchroniser les réponses STOP</button><label class="checkline"><input id="selectAllConsent" type="checkbox" onchange="toggleAllConsent()"> <span>Tous les clients consentants affichés</span></label></div><p class="muted" id="smsRecipientsCount">Aucun destinataire chargé.</p><div id="smsRecipients" class="list"></div><div class="notice" id="campaignPreview">Aperçu du message et du nombre de destinataires.</div><button onclick="sendCampaign()">Prévisualiser et confirmer l’envoi</button></div><div class="card"><h3>Historique des campagnes SMS</h3><div id="campaignHistory" class="list"></div></div></section>
-<section id="tab-history" class="hidden"><div class="card"><h3>Journal des actions</h3><div id="auditList" class="list"></div></div></section>
-</section>
-<section id="tabletApp" class="hidden"><div class="topline"><h2>Compte fidélité client</h2><span class="pill">TABLETTE BOUCHERIE</span></div><div id="tabletLogin" class="card"><h3>Accès tablette fidélité</h3><p class="muted">Identifiant et mot de passe partagés configurés par l’administrateur.</p><form onsubmit="tabletLoginSubmit(event)"><div class="field"><label>Identifiant</label><input id="tUsername" autocomplete="username" required></div><div class="field"><label>Mot de passe</label><input id="tPassword" type="password" autocomplete="current-password" required></div><button type="submit">Accéder à la fidélité</button></form></div><div id="tabletWorkspace" class="hidden"><div class="card"><h3>Rechercher un compte fidélité</h3><form onsubmit="tabletLookup(event)"><div class="field"><label>Numéro de téléphone du client</label><input id="tPhone" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="off" required></div><div class="field" id="lookupPinBox"><label>PIN vendeur à 4 chiffres</label><input id="tLookupPin" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" autocomplete="off"></div><button type="submit">Rechercher le compte</button></form></div><div id="newCustomerBox" class="card hidden"></div><div id="tabletCustomerBox"></div><div id="tabletRewardsBox"></div></div></section>
-<div id="modalRoot"></div><footer class="foot">Boucherie Premium · Module fidélité isolé · Les données historiques des autres rubriques ne sont pas modifiées.</footer></div>
-<script>
+</style></head>
+    <body>
+      <div class="wrap">
+        <header class="brand">
+          <div class="mark">✦</div>
+          <h1>BOUCHERIE PREMIUM</h1>
+          <p>PROGRAMME DE FIDÉLITÉ</p>
+        </header>
+        <div id="toast" class="notice hidden" role="status">
+        </div>
+        <section id="adminGate" class="card hidden">
+          <h3>Accès administrateur</h3>
+          <p>Pour gérer la fidélité, connecte-toi d’abord à Boucherie Premium avec le compte administrateur, puis ouvre cette rubrique depuis l’application principale.</p>
+          <button onclick="backToApp()">Retour à Boucherie Premium</button>
+        </section>
+        <section id="adminApp" class="hidden">
+          <div class="topline">
+            <h2>Administration fidélité</h2>
+            <div class="row" style="flex:0 0 auto">
+              <button class="secondary" onclick="backToApp()">← Application</button>
+              <button class="secondary" onclick="openTablet()">Écran tablette ↗</button>
+            </div>
+          </div>
+          <div class="tabs" id="adminTabs">
+            <button data-tab="overview" class="active" onclick="showAdminTab('overview')">Vue d’ensemble</button>
+            <button data-tab="customers" onclick="showAdminTab('customers')">Clients</button>
+            <button data-tab="rewards" onclick="showAdminTab('rewards')">Récompenses</button>
+            <button data-tab="settings" onclick="showAdminTab('settings')">Réglages</button>
+            <button data-tab="sms" onclick="showAdminTab('sms')">SMS clients</button>
+            <button data-tab="history" onclick="showAdminTab('history')">Historique</button>
+          </div>
+          <section id="tab-overview">
+            <div class="grid">
+              <div class="card">
+                <small class="muted">Clients fidélité</small>
+                <div id="statCustomers" class="stats">—</div>
+              </div>
+              <div class="card">
+                <small class="muted">Récompenses actives</small>
+                <div id="statRewards" class="stats">—</div>
+              </div>
+              <div class="card">
+                <small class="muted">Points en circulation</small>
+                <div id="statPoints" class="stats">—</div>
+              </div>
+              <div class="card">
+                <small class="muted">Campagnes SMS</small>
+                <div id="statCampaigns" class="stats">—</div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Règles actuelles</h3>
+              <div id="overviewRules" class="muted">Chargement…</div>
+            </div>
+            <div class="notice">Les points ne périment pas. Les opérations de points et les validations de récompenses sont traitées côté serveur.</div>
+          </section>
+          <section id="tab-customers" class="hidden">
+            <div class="card">
+              <h3>Rechercher un client</h3>
+              <div class="row">
+                <div class="field">
+                  <label>Nom ou téléphone</label>
+                  <input id="customerSearch" placeholder="Prénom ou +33…" oninput="debouncedCustomers()">
+                </div>
+                <button onclick="loadCustomers()">Rechercher</button>
+              </div>
+              <div class="muted">Sélectionne un client pour consulter son solde et gérer son compte.</div>
+            </div>
+            <div id="customerList" class="list">
+            </div>
+            <div id="customerDetail">
+            </div>
+          </section>
+          <section id="tab-rewards" class="hidden">
+            <div class="card">
+              <div class="row">
+                <h3>Catalogue des récompenses</h3>
+                <button onclick="editReward()">＋ Ajouter</button>
+              </div>
+              <p class="muted">Produits offerts ou réductions. Une photo est obligatoire pour chaque récompense active destinée aux clients.</p>
+              <div id="rewardList" class="list">
+              </div>
+            </div>
+            <div id="rewardEditor" class="card hidden">
+            </div>
+          </section>
+          <section id="tab-settings" class="hidden">
+            <div class="card">
+              <h3>Règles du programme</h3>
+              <div class="grid">
+                <div class="field">
+                  <label>Points attribués par jour et par client</label>
+                  <input id="cfgPoints" type="number" min="1" max="100">
+                </div>
+                <div class="field">
+                  <label>Bronze — à partir de</label>
+                  <input id="cfgBronze" type="number" min="0">
+                </div>
+                <div class="field">
+                  <label>Argent — à partir de</label>
+                  <input id="cfgSilver" type="number" min="0">
+                </div>
+                <div class="field">
+                  <label>Or — à partir de</label>
+                  <input id="cfgGold" type="number" min="1">
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Code PIN partagé</h3>
+              <label class="checkline">
+                <input id="cfgPinEnabled" type="checkbox"> <span>Activer le PIN global</span>
+              </label>
+              <label class="checkline">
+                <input id="cfgPinLookup" type="checkbox"> <span>Demander le PIN lors de l’accès au compte et de l’attribution quotidienne</span>
+              </label>
+              <label class="checkline">
+                <input id="cfgPinRedeem" type="checkbox"> <span>Demander le PIN lors de la confirmation d’une récompense</span>
+              </label>
+              <div class="field">
+                <label>Nouveau PIN à 4 chiffres (laisser vide pour conserver le PIN actuel)</label>
+                <input id="cfgNewPin" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="••••">
+              </div>
+              <p id="pinStatus" class="muted">
+              </p>
+            </div>
+            <div class="card">
+              <h3>Connexion de la tablette fidélité</h3>
+              <div class="grid">
+                <div class="field">
+                  <label>Identifiant partagé</label>
+                  <input id="tabletUsername" autocomplete="off">
+                </div>
+                <div class="field">
+                  <label>Nouveau mot de passe (10 caractères minimum)</label>
+                  <input id="tabletPassword" type="password" autocomplete="new-password">
+                </div>
+              </div>
+              <p class="muted">La session de la tablette reste active après redémarrage. Modifier les identifiants ou révoquer l’accès invalide immédiatement la session précédente.</p>
+              <div class="row">
+                <button onclick="saveTablet()">Enregistrer les identifiants</button>
+                <button class="danger" onclick="revokeTablet()">Révoquer la tablette</button>
+              </div>
+              <p id="tabletStatus" class="muted">
+              </p>
+            </div>
+            <div class="card">
+              <h3>Communications clients</h3>
+              <label class="checkline">
+                <input id="cfgSmsEnabled" type="checkbox"> <span>Autoriser les campagnes SMS depuis FIDÉLITÉ</span>
+              </label>
+              <p class="muted">Les SMS ne seront envoyés qu’aux clients ayant un consentement enregistré et non retiré. L’offre gratuite TextBee est limitée et le forfait mobile reste soumis aux conditions de l’opérateur.</p>
+            </div>
+            <button class="full" onclick="saveSettings()">Enregistrer tous les réglages fidélité</button>
+          </section>
+          <section id="tab-sms" class="hidden">
+            <div class="card">
+              <h3>Passerelle SMS gratuite — téléphone Android</h3>
+              <p class="muted">Le téléphone Android doit être connecté à TextBee, allumé et en ligne. La clé API est conservée côté serveur et n’est pas réaffichée dans le navigateur. Les destinataires verront le numéro de la SIM, pas le nom BOUCHERIE PREMIUM. Pour détecter les réponses STOP, active aussi « Receive SMS » et l’autorisation SMS dans l’application TextBee sur Android.</p>
+              <div class="field">
+                <label>Clé API TextBee</label>
+                <input id="smsApiKey" type="password" autocomplete="new-password" placeholder="Coller la clé API TextBee">
+              </div>
+              <div class="row">
+                <div class="field">
+                  <label>Téléphone associé (facultatif)</label>
+                  <select id="smsDevice">
+                    <option value="">Téléphone par défaut TextBee</option>
+                  </select>
+                </div>
+                <button class="secondary" onclick="loadSmsDevices()">Charger les téléphones</button>
+              </div>
+              <button onclick="saveSmsConfig()">Enregistrer la configuration SMS</button>
+              <p id="smsConfigStatus" class="muted">
+              </p>
+            </div>
+            <div class="card">
+              <h3>Préparer une campagne</h3>
+              <div class="field">
+                <label>Type de message</label>
+                <select id="campaignType">
+                  <option value="promotion">Promotion commerciale</option>
+                  <option value="information">Information pratique</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Message SMS</label>
+                <textarea id="campaignMessage" maxlength="1000" placeholder="Rédige ton message…" oninput="updateCampaignPreview()">
+                </textarea>
+                <div class="muted">
+                  <span id="campaignChars">0</span>/1000 caractères · plusieurs segments peuvent être nécessaires si le message est long.</div>
+                </div>
+                <div class="row">
+                  <button class="secondary" onclick="loadConsentRecipients()">Actualiser les clients consentants</button>
+                  <button class="secondary" onclick="syncOptOuts()">Synchroniser les réponses STOP</button>
+                  <label class="checkline">
+                    <input id="selectAllConsent" type="checkbox" onchange="toggleAllConsent()"> <span>Tous les clients consentants affichés</span>
+                  </label>
+                </div>
+                <p class="muted" id="smsRecipientsCount">Aucun destinataire chargé.</p>
+                <div id="smsRecipients" class="list">
+                </div>
+                <div class="notice" id="campaignPreview">Aperçu du message et du nombre de destinataires.</div>
+                <button onclick="sendCampaign()">Prévisualiser et confirmer l’envoi</button>
+              </div>
+              <div class="card">
+                <h3>Historique des campagnes SMS</h3>
+                <div id="campaignHistory" class="list">
+                </div>
+              </div>
+            </section>
+            <section id="tab-history" class="hidden">
+              <div class="card">
+                <h3>Journal des actions</h3>
+                <div id="auditList" class="list">
+                </div>
+              </div>
+            </section>
+          </section>
+          <section id="tabletApp" class="hidden">
+            <div class="topline">
+              <h2>Compte fidélité client</h2>
+              <span class="pill">TABLETTE BOUCHERIE</span>
+            </div>
+            <div id="tabletLogin" class="card">
+              <h3>Accès tablette fidélité</h3>
+              <p class="muted">Identifiant et mot de passe partagés configurés par l’administrateur.</p>
+              <form onsubmit="tabletLoginSubmit(event)">
+                <div class="field">
+                  <label>Identifiant</label>
+                  <input id="tUsername" autocomplete="username" required>
+                </div>
+                <div class="field">
+                  <label>Mot de passe</label>
+                  <input id="tPassword" type="password" autocomplete="current-password" required>
+                </div>
+                <button type="submit">Accéder à la fidélité</button>
+              </form>
+            </div>
+            <div id="tabletWorkspace" class="hidden">
+              <div class="card">
+                <h3>Rechercher un compte fidélité</h3>
+                <form onsubmit="tabletLookup(event)">
+                  <div class="field">
+                    <label>Numéro de téléphone du client</label>
+                    <input id="tPhone" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="off" required>
+                  </div>
+                  <div class="field" id="lookupPinBox">
+                    <label>PIN vendeur à 4 chiffres</label>
+                    <input id="tLookupPin" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" autocomplete="off">
+                  </div>
+                  <button type="submit">Rechercher le compte</button>
+                </form>
+              </div>
+              <div id="newCustomerBox" class="card hidden">
+              </div>
+              <div id="tabletCustomerBox">
+              </div>
+              <div id="tabletRewardsBox">
+              </div>
+            </div>
+          </section>
+          <div id="modalRoot">
+          </div>
+          <footer class="foot">Boucherie Premium · Module fidélité isolé · Les données historiques des autres rubriques ne sont pas modifiées.</footer>
+        </div>
+        <script>
 const SB_URL='https://xtcholjupulwanxriqqf.supabase.co';const SB_KEY='sb_publishable_A9f5ZLCu3BiqZnmahgFUWA__T1xdyEY';const supa=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});const $=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const params=new URLSearchParams(location.search);const tabletMode=params.get('mode')==='tablette';let appCtx=null,adminConfig=null,adminCustomers=[],allSmsCustomers=[],smsSelected=new Set(),currentCustomer=null,currentDetail=null,currentRewards=[],currentRedemption=null,tabletToken=localStorage.getItem('bp_loyalty_tablet_token')||'',lastLookupPin='',customerSearchTimer=null;
 function toast(msg,error=false){const e=$('toast');e.textContent=msg;e.classList.remove('hidden','error','success');e.classList.add(error?'error':'success');window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>e.classList.add('hidden'),6500)}
 function normalizePhoneLocal(s){return String(s||'').replace(/[\s().-]/g,'')}
@@ -80,4 +332,5 @@ function confirmRedemption(id){const needsPin=tabletConfig.pin_enabled!==false&&
 async function submitRedemption(id,needsPin){const pin=needsPin?$('confirmRedeemPin').value:'';try{const r=await api('tablet_confirm_redemption',{tabletToken,redemptionId:id,pin},true);$('modalRoot').innerHTML='';currentCustomer.balance=r.balance;currentCustomer.tier=r.tier||currentCustomer.tier;currentCustomer.awarded_today=currentCustomer.awarded_today||false;renderTabletCustomer(currentCustomer,null);$('tabletRewardsBox').innerHTML='';toast('Récompense validée et points déduits.')}catch(e){toast(e.message,true)}}
 async function cancelRedemption(id){if(!confirm('Annuler la demande de récompense ? Aucun point ne sera déduit.'))return;try{await api('tablet_cancel_redemption',{tabletToken,redemptionId:id},true);currentRedemption=null;$('tabletRewardsBox').innerHTML='';await showTabletRewards();toast('Demande annulée ; aucun point n’a été déduit.')}catch(e){toast(e.message,true)}}
 init().catch(e=>toast(e.message,true));
-</script></body></html>
+</script></body>
+      </html>
