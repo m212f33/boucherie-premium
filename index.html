@@ -124,7 +124,11 @@ main:after{
   animation:logoArrival 1.3s .15s cubic-bezier(.16,1,.3,1) both,logoGlow 5s 1.5s ease-in-out infinite;
 }
 .brand{
-  margin:0;
+  display:block;
+  width:100%;
+  margin:0 auto;
+  padding:0;
+  text-align:center;
   font-size:clamp(25px,5vw,37px);
   line-height:1.1;
   font-weight:850;
@@ -135,6 +139,10 @@ main:after{
 }
 .brand span{
   display:block;
+  width:100%;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
   margin-top:9px;
   color:var(--gold);
   font-size:.52em;
